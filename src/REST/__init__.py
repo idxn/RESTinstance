@@ -119,7 +119,8 @@ class REST(Keywords):
                  proxies={},
                  schema={},
                  spec={},
-                 instances=[]):
+                 instances=[],
+                 log_to_console=True):
         self.request = {
             'method': None,
             'url': None,
@@ -173,6 +174,7 @@ class REST(Keywords):
         self.spec = {}
         self.spec.update(self._input_object(spec))
         self.instances = self._input_array(instances)
+        self.log_to_console = log_to_console
 
 
     @staticmethod
@@ -180,7 +182,7 @@ class REST(Keywords):
         json = dumps(json, ensure_ascii=False, indent=4,
                      separators=(',', ': ' ), sort_keys=sort_keys)
         logger.info("%s\n%s" % (header, json))    # no coloring for log.html
-        if also_console:
+        if also_console and self.log_to_console:
             json_data = highlight(json,
                                   lexers.JsonLexer(),
                                   formatters.TerminalFormatter())
