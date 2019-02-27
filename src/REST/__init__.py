@@ -120,7 +120,7 @@ class REST(Keywords):
                  schema={},
                  spec={},
                  instances=[],
-                 log_to_console=True):
+                 log_to_console=False):
         self.request = {
             'method': None,
             'url': None,
